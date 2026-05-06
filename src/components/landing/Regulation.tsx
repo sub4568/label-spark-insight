@@ -30,7 +30,17 @@ export function Regulation() {
           </div>
 
           <div className="relative">
-            <div className="rounded-2xl border border-border bg-surface/60 p-8 backdrop-blur shadow-elegant">
+            <div className="rounded-2xl border border-border bg-surface/60 p-3 backdrop-blur shadow-elegant">
+              <img
+                src={complianceVisual}
+                alt="Holographic EU Digital Product Passport compliance badge over a smart device"
+                width={1280}
+                height={896}
+                loading="lazy"
+                className="w-full h-auto rounded-xl object-cover aspect-square"
+              />
+            </div>
+            <div className="mt-4 rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur shadow-elegant">
               <div className="font-mono text-xs space-y-3">
                 <div className="flex items-center justify-between text-muted-foreground">
                   <span>compliance.status</span>
