@@ -1,3 +1,5 @@
+import complianceVisual from "@/assets/compliance-visual.jpg";
+
 export function Regulation() {
   return (
     <section id="regulation" className="relative py-24 sm:py-32 border-t border-border">
