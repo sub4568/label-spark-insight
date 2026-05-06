@@ -1,3 +1,5 @@
+import networkVisual from "@/assets/intelligence-network.jpg";
+
 const staticItems = [
   "Manual compliance",
   "Zero visibility post-sale",
