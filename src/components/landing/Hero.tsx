@@ -36,21 +36,15 @@ export function Hero() {
           </a>
         </div>
 
-        <div className="mt-20 mx-auto max-w-4xl animate-fade-up [animation-delay:360ms]">
+        <div className="mt-20 mx-auto max-w-5xl animate-fade-up [animation-delay:360ms]">
           <div className="relative rounded-2xl border border-border bg-surface/40 backdrop-blur p-2 shadow-elegant">
-            <div className="aspect-[16/9] rounded-xl bg-gradient-to-br from-surface-elevated via-surface to-background p-8 flex items-center justify-center">
-              <div className="grid grid-cols-3 gap-4 w-full max-w-md">
-                {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <div
-                    key={i}
-                    className="aspect-square rounded-lg border border-border bg-background/50 flex items-center justify-center text-xs font-mono text-muted-foreground"
-                    style={{ animationDelay: `${i * 80}ms` }}
-                  >
-                    <span className="opacity-60">0x{(i * 137).toString(16).padStart(3, "0")}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <img
+              src={heroVisual}
+              alt="Smart product packaging with a glowing Labelring intelligence interface"
+              width={1920}
+              height={1080}
+              className="w-full h-auto rounded-xl object-cover aspect-[16/9]"
+            />
           </div>
         </div>
       </div>
