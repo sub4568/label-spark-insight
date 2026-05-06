@@ -65,6 +65,17 @@ export function Comparison() {
             </ul>
           </div>
         </div>
+
+        <div className="mt-16 rounded-2xl overflow-hidden border border-border shadow-elegant">
+          <img
+            src={networkVisual}
+            alt="Global network of connected packages forming a real-time intelligence layer"
+            width={1280}
+            height={896}
+            loading="lazy"
+            className="w-full h-auto object-cover"
+          />
+        </div>
       </div>
     </section>
   );
