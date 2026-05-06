@@ -1,3 +1,5 @@
+import heroVisual from "@/assets/hero-visual.jpg";
+
 export function Hero() {
   return (
     <section id="top" className="relative pt-32 pb-24 sm:pt-40 sm:pb-32 overflow-hidden">
