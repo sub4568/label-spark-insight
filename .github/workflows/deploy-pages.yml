@@ -41,19 +41,40 @@ jobs:
 
       - name: Prepare static output
         run: |
-          # TanStack Start outputs the client bundle to dist/client.
-          # Fall back to dist if the client folder isn't present.
           if [ -d "dist/client" ]; then
             OUT="dist/client"
           else
             OUT="dist"
           fi
           echo "Publishing $OUT"
-          # Remove Cloudflare-specific file that would suppress index.html
           rm -f "$OUT/.assetsignore"
-          # SPA fallback so deep links work on GitHub Pages
-          cp "$OUT/index.html" "$OUT/404.html" 2>/dev/null || true
-          # Disable Jekyll
+      
+          # Find the built assets
+          CSS=$(ls "$OUT/assets/"*.css | head -1 | xargs basename)
+          # The larger JS file is the app entry (358 kB), smaller is the vendor chunk (274 kB)
+          ENTRY_JS=$(ls -S "$OUT/assets/"index-*.js | head -1 | xargs basename)
+          VENDOR_JS=$(ls -S "$OUT/assets/"index-*.js | tail -1 | xargs basename)
+      
+          # Generate index.html
+          cat > "$OUT/index.html" << HTMLEOF
+          <!DOCTYPE html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>Label Spark Insight</title>
+              <script>window.__BASE__="/label-spark-insight/"</script>
+              <link rel="stylesheet" crossorigin href="/label-spark-insight/assets/${CSS}">
+            </head>
+            <body>
+              <div id="root"></div>
+              <script type="module" crossorigin src="/label-spark-insight/assets/${VENDOR_JS}"></script>
+              <script type="module" crossorigin src="/label-spark-insight/assets/${ENTRY_JS}"></script>
+            </body>
+          </html>
+          HTMLEOF
+      
+          cp "$OUT/index.html" "$OUT/404.html"
           touch "$OUT/.nojekyll"
           echo "OUT_DIR=$OUT" >> $GITHUB_ENV
 
