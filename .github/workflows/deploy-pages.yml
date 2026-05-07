@@ -49,6 +49,8 @@ jobs:
             OUT="dist"
           fi
           echo "Publishing $OUT"
+          # Remove Cloudflare-specific file that would suppress index.html
+          rm -f "$OUT/.assetsignore"
           # SPA fallback so deep links work on GitHub Pages
           cp "$OUT/index.html" "$OUT/404.html" 2>/dev/null || true
           # Disable Jekyll
