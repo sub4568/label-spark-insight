@@ -48,33 +48,7 @@ jobs:
           fi
           echo "Publishing $OUT"
           rm -f "$OUT/.assetsignore"
-      
-          # Find the built assets
-          CSS=$(ls "$OUT/assets/"*.css | head -1 | xargs basename)
-          # The larger JS file is the app entry (358 kB), smaller is the vendor chunk (274 kB)
-          ENTRY_JS=$(ls -S "$OUT/assets/"index-*.js | head -1 | xargs basename)
-          VENDOR_JS=$(ls -S "$OUT/assets/"index-*.js | tail -1 | xargs basename)
-      
-          # Generate index.html
-          cat > "$OUT/index.html" << HTMLEOF
-          <!DOCTYPE html>
-          <html lang="en">
-            <head>
-              <meta charset="UTF-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>Label Spark Insight</title>
-              <script>window.__BASE__="/label-spark-insight/"</script>
-              <link rel="stylesheet" crossorigin href="/label-spark-insight/assets/${CSS}">
-            </head>
-            <body>
-              <div id="root"></div>
-              <script type="module" crossorigin src="/label-spark-insight/assets/${VENDOR_JS}"></script>
-              <script type="module" crossorigin src="/label-spark-insight/assets/${ENTRY_JS}"></script>
-            </body>
-          </html>
-          HTMLEOF
-      
-          cp "$OUT/index.html" "$OUT/404.html"
+          cp "$OUT/index.html" "$OUT/404.html" 2>/dev/null || true
           touch "$OUT/.nojekyll"
           echo "OUT_DIR=$OUT" >> $GITHUB_ENV
 
