@@ -6,6 +6,9 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
+  tsr: {
+    target: "static",       // ← switches from cloudflare-worker to static HTML
+  },
   vite: {
     base: "/label-spark-insight/",
   },
