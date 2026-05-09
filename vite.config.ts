@@ -14,6 +14,7 @@ export default defineConfig({
     },
   },
   vite: {
-    base: "/label-spark-insight/",
+    // base: "/label-spark-insight/",
+    base: '/',
   },
 });
